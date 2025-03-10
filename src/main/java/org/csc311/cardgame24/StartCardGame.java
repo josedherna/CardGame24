@@ -12,6 +12,8 @@ public class StartCardGame extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(StartCardGame.class.getResource("card-game.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        stage.setMinWidth(613.0);
+        stage.setMinHeight(435.5);
         stage.setTitle("Card Game 24");
         stage.setScene(scene);
         stage.show();
