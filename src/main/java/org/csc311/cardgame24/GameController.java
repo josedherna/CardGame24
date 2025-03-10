@@ -7,6 +7,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 public class GameController {
     @FXML
     private Button hintButton;
@@ -28,4 +31,27 @@ public class GameController {
     private TextField expressionTextField;
     @FXML
     private HBox cardHbox;
+
+    private final HashSet<Card> cardSet = new HashSet<>();
+    ArrayList<Card> cardImagesToDisplay = new ArrayList<>();
+    private final CardDeck cardDeck = new CardDeck();
+
+    @FXML
+    private void initialize() {
+        shuffleCards();
+    }
+
+    @FXML
+    public void shuffleCards() {
+        cardSet.clear();
+        cardImagesToDisplay.clear();
+        while (cardSet.size() != 4) {
+            cardSet.add(cardDeck.pickRandomCard());
+        }
+        cardImagesToDisplay.addAll(cardSet);
+        cardImageView1.setImage(cardImagesToDisplay.get(0).getCardImage());
+        cardImageView2.setImage(cardImagesToDisplay.get(1).getCardImage());
+        cardImageView3.setImage(cardImagesToDisplay.get(2).getCardImage());
+        cardImageView4.setImage(cardImagesToDisplay.get(3).getCardImage());
+    }
 }
