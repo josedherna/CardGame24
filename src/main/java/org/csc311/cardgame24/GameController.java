@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -37,6 +38,7 @@ public class GameController {
 
     private final HashSet<Card> CARD_SET = new HashSet<>();
     ArrayList<Card> cardImagesToDisplay = new ArrayList<>();
+    ArrayList<Integer> cardValues = new ArrayList<>();
     private final CardDeck cardDeck = new CardDeck();
     private int score = 0;
 
@@ -63,7 +65,6 @@ public class GameController {
 
     @FXML
     public void validateExpression() {
-        ArrayList<Integer> cardValues = new ArrayList<>();
         ArrayList<Integer> parsedExpressionNumbers = new ArrayList<>();
 
         for (Card card : CARD_SET) {
@@ -76,6 +77,7 @@ public class GameController {
 
         if (expression.isEmpty()) {
             promptLabel.setText("Please don't leave the text field blank!");
+            cardValues.clear();
             return;
         }
         //Gets numeric values from expression.
@@ -91,6 +93,7 @@ public class GameController {
                         parsedExpressionNumbers.add(Integer.parseInt(currentNumber.toString()));
                     } catch (NumberFormatException e) {
                         promptLabel.setText("Please enter a valid expression!");
+                        cardValues.clear();
                         return;
                     }
                     //currentNumber is now empty so more digits can be added.
@@ -104,6 +107,7 @@ public class GameController {
                 parsedExpressionNumbers.add(Integer.parseInt(currentNumber.toString()));
             } catch (NumberFormatException e) {
                 promptLabel.setText("Please enter a valid expression!");
+                cardValues.clear();
                 return;
             }
             currentNumber = new StringBuilder();
@@ -112,6 +116,7 @@ public class GameController {
         //If the sizes between the expression and card set are different, then player entered an incorrect expression.
         if (parsedExpressionNumbers.size() != CARD_SET.size()) {
             promptLabel.setText("Please use the four numbers from each card ONLY once!");
+            cardValues.clear();
             return;
         }
 
@@ -127,11 +132,13 @@ public class GameController {
                 score += 10;
                 scoreLabel.setText("Score: " + score);
                 shuffleCards();
+                cardValues.clear();
                 expressionTextField.clear();
             }
         }
         else {
             promptLabel.setText("Please ONLY use the numbers from the cards!");
+            cardValues.clear();
         }
     }
 }
