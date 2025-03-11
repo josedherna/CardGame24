@@ -28,7 +28,6 @@
                 <rowConstraints>
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
-                <Label fx:id="promptLabel" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                 <GridPane>
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -63,6 +62,16 @@
                         </font>
                     </Button>
                 </GridPane>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+               <children>
+                  <Label fx:id="scoreLabel" text="Score: ">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="promptLabel" />
+               </children>
+            </VBox>
             </GridPane>
         </VBox>
         <HBox fx:id="cardHbox" alignment="CENTER" minHeight="250.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="ALWAYS">
@@ -108,7 +117,7 @@
                     <padding>
                         <Insets bottom="15.0" top="15.0" />
                     </padding>
-                    <Button fx:id="verifyButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="34.0" prefWidth="66.0" text="Verify" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                    <Button fx:id="verifyButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#validateExpression" prefHeight="34.0" prefWidth="66.0" text="Verify" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                         <font>
                             <Font size="14.0" />
                         </font>

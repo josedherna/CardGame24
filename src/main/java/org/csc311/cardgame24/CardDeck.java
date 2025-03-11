@@ -54,6 +54,7 @@ public class CardDeck {
     }
 
     public Card pickRandomCard() {
+        //Pick a random card from index 0-51 of the deck array.
         int index = (int) (Math.random() * 52);
         return deck[index];
     }
